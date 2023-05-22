@@ -1,0 +1,73 @@
+.item-tile {
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.22);
+    line-height: 1;
+    overflow: hidden;
+    transition: .2s;
+    border-radius: 4px;
+    margin-top: 30px;
+    background-color: #303B42;
+    display: flex;
+    flex-direction: row;
+
+    img{
+        width: 100%;
+    }
+    cursor: pointer;
+}
+
+.item_price {
+    font-family: "kanit-medium", Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 18px;
+    margin: 5px 10px;
+}
+
+.item_subTitle{
+    font-family: "kanit-medium", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 5px 10px;
+    color: #fff;
+}
+
+.item_subTitle-2{
+    font-family: "kanit-light", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 5px 10px;
+    color: #fff;
+}
+
+.tile-info{
+    display: flex;
+    position: relative;
+    padding-top: 10px;
+    flex-direction: column;
+}
+.tile-footer{
+    position: relative;  
+    display: flex;
+    justify-content:flex-start;
+    font-size: 11px;
+    font-family: "kanit-light", Arial, Helvetica, sans-serif;
+    color: #fff;
+    margin: 5px 10px;
+    &-icon{
+        width: 24px!important;
+        margin-right: 3px;
+    }
+}
+
+@media (min-width: 768px) {
+    .tile-footer{
+        position: absolute;  
+        justify-content:flex-end;
+        left:0;
+        bottom: 0;
+    }   
+}
+
+.movie-img{
+    width: 50%;
+}

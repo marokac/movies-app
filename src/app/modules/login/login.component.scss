@@ -1,0 +1,52 @@
+
+.container{
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #242E33;
+  align-items: center;
+  flex-direction: column;
+}
+
+.login-form{
+    padding: 3.125rem;
+    max-height: 30vh;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.22);
+    border-radius: 8px;
+  }
+  
+  .header{
+      font-family: "Yantramanav-medium", Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      font-size: 3rem;
+      color: #fff;
+  }
+  .sub-header{
+    font-family: "Yantramanav-light", Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 1.5rem;
+    color: #fff;
+}
+  .actions{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .login-text{
+    font-family: "kanit-light", Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    margin: 5px;
+
+    span{
+        color: #0b4080;
+        cursor: pointer;
+    }
+}
+
+.error-message{
+    color: red;
+    font-size: 16px;
+  }

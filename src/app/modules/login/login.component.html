@@ -1,0 +1,38 @@
+<!-- <button primary-button>Primary Button</button>
+<button secondary-button>Primary Button</button> -->
+
+<div class="container">
+
+<h1 class="header">Welcome to TMDB Movies</h1>
+
+<h4 class="sub-header">Please log in below to view movies</h4>
+
+<form [formGroup]="form" class="login-form" fxLayout="column" fxLayoutGap="15px">
+    <app-input fxLayout="column" fxFlex="100" (inputChange)="onInputChange($event)" [data]="{
+        label: 'username',
+        controlName: 'userName',
+        parentFormGroup: form,
+        type:'text',
+        errorMessage : formError['userName']
+    }"></app-input>
+
+    <app-input fxLayout="column" fxFlex="100" (inputChange)="onInputChange($event)" [data]="{
+        label: 'Password',
+        controlName: 'password',
+        parentFormGroup: form,
+        type:'password',
+        errorMessage : formError['password']
+    }"></app-input>
+
+    <div class="actions" fxLayout="column" fxFlex="100">
+        <button primary-button>Sign in</button>
+        <label class="login-text">Don't have an account?
+            <span>Register</span>
+        </label>
+        <label class="login-text">
+            <span>Forgot password?</span>
+        </label>
+    </div>
+</form>
+
+</div>

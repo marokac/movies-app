@@ -1,0 +1,17 @@
+.button{
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.6;
+    }
+    &--primary{
+      background-color: $primary ;
+      color:  $white;
+    }
+    &--secondary{
+      color: $gray;
+      border-color: $secondary;
+    }
+  }

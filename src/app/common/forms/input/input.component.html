@@ -1,0 +1,6 @@
+<div fxFlex="100" fxLayout="row wrap" [formGroup]="data.parentFormGroup">
+    <label fxFlex="100" class="c-input-label">{{data.label}}</label>
+    <input fxFlex="100" [disabled]="data.isDisabled" [class.c-input-valid]="!data.errorMessage && inputValue"[class.c-input-input-err]="data.errorMessage" [class.c-input-large]="data.size==='large'" placeholder="{{data.placeholder}}" (change)="onInputChange($event)" 
+     class="c-input"[class.c-input-disabled]="data.isDisabled" formControlName="{{data.controlName}}" type="{{data.type}}"/>
+    <span fxFlex="100"class="c-input-err" *ngIf="data.errorMessage">{{data.errorMessage}}</span>
+</div>

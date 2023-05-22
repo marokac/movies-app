@@ -1,0 +1,57 @@
+.panel {
+    margin: 0;
+    padding: 0;
+
+    &-header {
+        display: flex;
+        width: 100%;
+        position: relative;
+        padding: 8px;
+        padding-right: 2%;
+        padding-left: 2%;
+        border-bottom: 1px solid #121212;
+        background-color: #0D243F;
+       // box-shadow: 0 2px 4px rgba(0,0,0,.22);
+       color:rgb(81,194,249); 
+
+        &-icon {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            width: 30px;
+            cursor: pointer;
+            &:hover{
+                opacity: 0.5;
+                width: 35px;
+
+            }
+        }
+
+        &-text{
+            font-family: "Yantramanav-medium", Arial, Helvetica, sans-serif;
+            font-weight: 800;
+            font-size: 3rem;
+            color: #fff;
+            margin: 0;
+        }
+
+    }
+
+    &-body {
+        padding: 15%;  
+        background-color: #242E35;
+        color: #fff;
+    }
+}
+
+@media (min-width: 768px) {
+    .panel-body{
+        padding: 25px;
+        padding-right: 15%;
+        padding-left: 15%;
+    } 
+    .panel-header{
+        padding-right: 15%;
+        padding-left: 15%;
+    }
+}
