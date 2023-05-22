@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AuthenticateAction } from 'src/app/state/Auth/Auth.actions';
+import { User } from 'src/app/shared/models/user.model';
+import { AuthenticateAction, AuthenticateActionError, AuthenticateActionSuccess } from 'src/app/state/Auth/Auth.actions';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   submitClicked = false;
   validationMessages: any = {
     userName: {
-      required: 'Email is required',
+      required: 'username is required',
     },
     password: {
       required: 'Password is required',
@@ -68,7 +69,8 @@ export class LoginComponent implements OnInit {
 
   next(): void{
     if(this.form.valid){
-      this.store.dispatch(AuthenticateAction());
+      const data = new User(this.form.value.userName,this.form.value.password)
+      this.store.dispatch(AuthenticateAction({user: data}));
     }
     else{
       this.validateForm();

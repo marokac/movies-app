@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { StateModule } from './state/state.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SessionStorageService } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-  }
+  },
+  SessionStorageService
   ],
   bootstrap: [AppComponent]
 })

@@ -6,11 +6,11 @@ import { Component, Input } from '@angular/core';
 })
 export class CardComponent {
   
-  @Input() item:any = {
-    imageUrl:'http/ssssssss'  , price: 10 , subub: 'amelodi' , title: 'test' , description:'test'
-  };
+  @Input() item:any
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 }

@@ -1,15 +1,13 @@
 <div fxLayout="column" fxLayout.gt-sm="row" fxFlex="100%" class="item-tile">
     <div fxFlex="100%" fxFlex.gt-sm="40%" class="movie-img">
-        <img height="212" [src]="item.imgUrl">
+        <img height="212" [src]="item.poster_path">
     </div>
     <div fxFlex="100%" fxFlex.gt-sm="60%"  fxLayout="column"  class="tile-info">
-        <h1 class="item_price">R{{item.price}}.00</h1>
-        <p class="item_subTitle-2">Location: {{item.subub}}</p>
-        <p class="item_subTitle">{{item.title}}</p>
-        <p class="item_subTitle-2">
-            {{item.description}}
-        </p>
+        <h1 class="item_price">{{item.name}}</h1>
+        <p class="item_subTitle-2">{{item.description}}</p>
+        <p class="item_subTitle">{{item.item_count}}</p>
     </div>
     </div>
+
 
     

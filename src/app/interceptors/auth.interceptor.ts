@@ -4,6 +4,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { environment } from 'src/environments/environment';
 
 
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
@@ -12,15 +13,14 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (
             !request ||
-            !request.url ||
-            (/^http/.test(request.url) && !request.url.includes('authentication'))
+            !request.url
         ) {
             return next.handle(request);
         }
 
         request = request.clone({
             setHeaders: {
-                'Authorization': `Bearer ${environment.API_KEY}`,
+                'Authorization': `Bearer ${environment.AUTH_TOKEN_KEY}`,
             },
         });
 

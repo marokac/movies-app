@@ -5,6 +5,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieListRoutingModule } from './movie-list-routing.module';
 import { CardModule, PanelModule } from 'src/app/common/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     MatPaginatorModule,
     MovieListRoutingModule,
     CardModule,

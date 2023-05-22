@@ -1,23 +1,38 @@
 import { createReducer, on } from '@ngrx/store';
-import { AuthenticateAction, AuthenticateActionError, AuthenticateActionSuccess } from './Auth.actions';
+import { AuthenticateAction, AuthenticateActionError, AuthenticateActionSuccess, GetAccessTokenActionError, GetAccessTokenActionSuccess } from './Auth.actions';
 
 
 export const initialState = {
-    auth: {},
+    success: null,
+    error: null
+};
+
+export const tokeninitialState = {
+    success: null,
+    error: null
 };
 
 export const AuthReducer = createReducer(
     initialState,
-    on(AuthenticateAction, (state, action): any => ({
+    on(AuthenticateActionSuccess, (state, {success}): any => ({
         ...state,
-        auth: { ...action },
+        success:{...success} ,
     })),
-    on(AuthenticateActionSuccess, (state, success): any => ({
+    on(AuthenticateActionError, (state, {error}): any => ({
         ...state,
-        ...success,
+        error:{...error} ,
+    }))
+);
+
+
+export const TokenReducer = createReducer(
+    tokeninitialState,
+    on(GetAccessTokenActionSuccess, (state, {success}): any => ({
+        ...state,
+        success:{...success} ,
     })),
-    on(AuthenticateActionError, (state, error): any => ({
+    on(GetAccessTokenActionError, (state, {error}): any => ({
         ...state,
-        ...error,
+        error:{...error} ,
     }))
 );

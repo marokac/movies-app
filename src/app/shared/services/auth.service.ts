@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user.model';
 
 
 
@@ -15,12 +16,35 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
     constructor(private http: HttpClient ) {}
     
-    
-    public authenticate(): Observable<any> {
+    public getAccessToken (): Observable<any>{
+     
+        return this.http
+        .get(
+            `${environment.API_URL}/authentication/token/new`
+            ,
+            {
+                observe: 'response',
+            }
+        )
+        .pipe(
+            map((response: any) => {
+                sessionStorage.setItem('request_token', response.body?.request_token);
+                return response.body;
+            })
+        );
+}
+
+    public authenticate(user: User): Observable<any> {
+             const request = {
+                username: user.userName,
+                password: user.password,
+                request_token: sessionStorage.getItem('request_token'),
+             }
             return this.http
-            .get(
-                `${environment.API_URL}/authentication`
+            .post(
+                `${environment.API_URL}/authentication/token/validate_with_login`
                 ,
+                request,
                 {
                     observe: 'response',
                 }
@@ -32,5 +56,15 @@ export class AuthService {
             );
     }
 
+
+
+    
+
 }
+
+
+
+
+
+
 

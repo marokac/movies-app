@@ -5,12 +5,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { environment } from '../../environments/environment';
 import { AuthEffect } from './Auth/auth.effects';
-import { AuthReducer } from './Auth/auth.reducer';
+import { AuthReducer, TokenReducer } from './Auth/auth.reducer';
+import { MoviesEffect } from './movies/movies.effect';
+import { MovieReducer } from './movies/movies.reducer';
 
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
     return localStorageSync({
-        keys: ['auth'],
+        keys: ['token','auth', 'movies'],
         rehydrate: true,
         storage: sessionStorage,
         checkStorageAvailability: false,
@@ -22,9 +24,9 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 @NgModule({
     imports: [
         StoreModule.forRoot(
-            {
+            {   token: TokenReducer,
                 auth: AuthReducer,
-               
+                movies: MovieReducer
          
             },
             {
@@ -32,7 +34,8 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
             }
         ),
         EffectsModule.forRoot([
-            AuthEffect
+            AuthEffect,
+            MoviesEffect
         ]),
         StoreDevtoolsModule.instrument({
             maxAge: 25,

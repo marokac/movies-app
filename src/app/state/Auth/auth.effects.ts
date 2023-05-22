@@ -1,24 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, concatMap, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AuthActionTypes } from './auth.types';
-import { AuthenticateActionError, AuthenticateActionSuccess } from './Auth.actions';
+import { AuthenticateActionError, AuthenticateActionSuccess ,AuthenticateAction, GetAccessTokenActionSuccess, GetAccessTokenActionError} from './Auth.actions';
 
 @Injectable()
 export class AuthEffect {
-    createUserEffect$ = createEffect(() =>
+
+    tokenEffect$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(AuthActionTypes.AUTHANTICATE),
+            ofType(AuthActionTypes.INIT_EFFECTS),
             mergeMap(() => {
-                return this.authService.authenticate().pipe(
+                return this.authService.getAccessToken().pipe(
                     map(response => {
-                        return AuthenticateActionSuccess(response);
+                        return GetAccessTokenActionSuccess({success: response});
                     }),
                     catchError(error => {
-                        return of(AuthenticateActionError(error));
+                        return of(GetAccessTokenActionError({error: error}));
+                    })
+                );
+            })
+        )
+    );
+
+    AuthenticateEffect$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AuthActionTypes.AUTHANTICATE),
+            mergeMap((action) => {
+                return this.authService.authenticate(action['user']).pipe(
+                    map(response => {
+                        return AuthenticateActionSuccess({success: response});
+                    }),
+                    catchError(error => {
+                        return of(AuthenticateActionError({error: error}));
                     })
                 );
             })
