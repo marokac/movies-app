@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './modules/login/login.module';
 import { MovieListModule } from './modules/movie-list/movie-list.module';
-
-
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { StateModule } from './state/state.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,20 @@ import { MovieListModule } from './modules/movie-list/movie-list.module';
     CommonModule,
     BrowserModule,
     FlexLayoutModule,
+    HttpClientModule,
     AppRoutingModule,
     LoginModule,
     MovieListModule,
+    StateModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

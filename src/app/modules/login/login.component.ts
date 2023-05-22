@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AuthenticateAction } from 'src/app/state/Auth/Auth.actions';
 
 
 @Component({
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
   @Output() goToRegister: EventEmitter<any> = new EventEmitter();
 
 
-  constructor() { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
     this.validateForm();
@@ -60,6 +62,17 @@ export class LoginComponent implements OnInit {
     }
 
     )
+  }
+
+  // TO DO
+
+  next(): void{
+    if(this.form.valid){
+      this.store.dispatch(AuthenticateAction());
+    }
+    else{
+      this.validateForm();
+    }
   }
 
 }
